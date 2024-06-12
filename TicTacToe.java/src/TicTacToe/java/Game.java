@@ -51,20 +51,17 @@ public class Game extends JFrame{
         scorePlayerO.setText(String.valueOf(oCount));
     }
     
-    //private void enableFalse()
-    //{
-    //            jbtnTic1.setEnabled(false);
-    //            jbtnTic2.setEnabled(false);
-    //            jbtnTic3.setEnabled(false);
-    //            jbtnTic4.setEnabled(false);
-    //            jbtnTic5.setEnabled(false);
-    //            jbtnTic6.setEnabled(false);
-    //            jbtnTic7.setEnabled(false);
-    //            jbtnTic8.setEnabled(false);
-    //            jbtnTic9.setEnabled(false);
-    //            
-    //            
-    //}
+    private void enableFalse(){
+        kotak1.setEnabled(false);
+        kotak2.setEnabled(false);
+        kotak3.setEnabled(false);
+        kotak4.setEnabled(false);
+        kotak5.setEnabled(false);
+        kotak6.setEnabled(false);
+        kotak7.setEnabled(false);
+        kotak8.setEnabled(false);
+        kotak9.setEnabled(false);
+    }
     
     private void menang(){
         String b1 = kotak1.getText();
@@ -81,11 +78,12 @@ public class Game extends JFrame{
         
         if(b1==("X") & b2 == ("X") & b3 == ("X")){
             JOptionPane.showMessageDialog(this,"Player X Wins", "Tic Tac Toe",JOptionPane.INFORMATION_MESSAGE);
+            playerScore();
             kotak1.setBackground(Color.PINK);
             kotak2.setBackground(Color.PINK);
             kotak3.setBackground(Color.PINK);
             xCount -=-1;
-            playerScore();
+            enableFalse();
         }
         
         if(b4==("X") && b5 == ("X") && b6 == ("X")){
@@ -95,6 +93,7 @@ public class Game extends JFrame{
             kotak4.setBackground(Color.PINK);
             kotak5.setBackground(Color.PINK);
             kotak6.setBackground(Color.PINK);
+            enableFalse();
         }
         
         if(b7==("X") && b8 == ("X") && b9 == ("X")){
@@ -104,6 +103,7 @@ public class Game extends JFrame{
             kotak7.setBackground(Color.PINK);
             kotak8.setBackground(Color.PINK);
             kotak9.setBackground(Color.PINK);
+            enableFalse();
         }
         
         if(b1==("X") && b4 == ("X") && b7 == ("X")){
@@ -113,6 +113,7 @@ public class Game extends JFrame{
             kotak1.setBackground(Color.PINK);
             kotak4.setBackground(Color.PINK);
             kotak7.setBackground(Color.PINK);
+            enableFalse();
         }
         
         if(b2==("X") && b5 == ("X") && b8 == ("X")){
@@ -122,6 +123,7 @@ public class Game extends JFrame{
             kotak2.setBackground(Color.PINK);
             kotak5.setBackground(Color.PINK);
             kotak8.setBackground(Color.PINK);
+            enableFalse();
         }
         
         if(b3==("X") && b6 == ("X") && b9 == ("X")){
@@ -131,6 +133,7 @@ public class Game extends JFrame{
             kotak3.setBackground(Color.PINK);
             kotak6.setBackground(Color.PINK);
             kotak9.setBackground(Color.PINK);
+            enableFalse();
          }
         
         if(b1==("X") && b5 == ("X") && b9 == ("X")){
@@ -140,6 +143,7 @@ public class Game extends JFrame{
             kotak1.setBackground(Color.PINK);
             kotak5.setBackground(Color.PINK);
             kotak9.setBackground(Color.PINK);
+            enableFalse();
         }
         
         if(b3==("X") && b5 == ("X") && b7 == ("X")){
@@ -149,6 +153,7 @@ public class Game extends JFrame{
             kotak3.setBackground(Color.PINK);
             kotak5.setBackground(Color.PINK);
             kotak7.setBackground(Color.PINK);
+            enableFalse();
         }
         
         if(b1==("O") && b2 == ("O") && b3 == ("O")){
@@ -158,6 +163,7 @@ public class Game extends JFrame{
             kotak1.setBackground(Color.PINK);
             kotak2.setBackground(Color.PINK);
             kotak3.setBackground(Color.PINK);
+            enableFalse();
         }
         
         if(b4==("O") && b5 == ("O") && b6 == ("O")){
@@ -167,6 +173,7 @@ public class Game extends JFrame{
             kotak4.setBackground(Color.PINK);
             kotak5.setBackground(Color.PINK);
             kotak6.setBackground(Color.PINK);
+            enableFalse();
        }
         
         if(b7==("O") && b8 == ("O") && b9 == ("O")){
@@ -176,7 +183,7 @@ public class Game extends JFrame{
             kotak7.setBackground(Color.PINK);
             kotak8.setBackground(Color.PINK);
             kotak9.setBackground(Color.PINK);
-           // enableFalse();
+            enableFalse();
         }
         
         if(b1==("O") && b4 == ("O") && b7 == ("O")){
@@ -186,7 +193,7 @@ public class Game extends JFrame{
             kotak1.setBackground(Color.PINK);
             kotak4.setBackground(Color.PINK);
             kotak7.setBackground(Color.PINK);
-           // enableFalse();
+            enableFalse();
         }
         
         if(b2==("O") && b5 == ("O") && b8 == ("O")){
@@ -196,7 +203,7 @@ public class Game extends JFrame{
             kotak2.setBackground(Color.PINK);
             kotak5.setBackground(Color.PINK);
             kotak8.setBackground(Color.PINK);
-            //enableFalse();
+            enableFalse();
         }
         
         if(b3==("O") && b6 == ("O") && b9 == ("O")){
@@ -206,7 +213,7 @@ public class Game extends JFrame{
             kotak3.setBackground(Color.PINK);
             kotak6.setBackground(Color.PINK);
             kotak9.setBackground(Color.PINK);
-           // enableFalse();
+            enableFalse();
         }
         
         if(b1==("O") && b5 == ("O") && b9 == ("O")){
@@ -216,7 +223,7 @@ public class Game extends JFrame{
             kotak1.setBackground(Color.PINK);
             kotak5.setBackground(Color.PINK);
             kotak9.setBackground(Color.PINK);
-           // enableFalse();
+            enableFalse();
         }
         
         if(b3==("O") && b5 == ("O") && b7 == ("O")){
@@ -226,7 +233,7 @@ public class Game extends JFrame{
             kotak3.setBackground(Color.PINK);
             kotak5.setBackground(Color.PINK);
             kotak7.setBackground(Color.PINK);
-           // enableFalse();
+            enableFalse();
         }
     }
     
@@ -553,147 +560,146 @@ public class Game extends JFrame{
 
     private void kotak1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_kotak1ActionPerformed
         kotak1.setText(startGame);
-    
         if(startGame.equalsIgnoreCase("X")){
-            //jbtnTic1.setForeground(Color.BLACK);
-            //jbtnTic1.setBackground(Color.YELLOW);
+            kotak1.setForeground(Color.BLACK);
+            kotak1.setBackground(Color.YELLOW);
             check = false;
         }else{
-            //jbtnTic1.setForeground(Color.BLACK);
-            //jbtnTic1.setBackground(Color.RED);
+            kotak1.setForeground(Color.BLACK);
+            kotak1.setBackground(Color.RED);
              check = true;
         }
         pilihPlayer();
         menang();
-        //jbtnTic1.setEnabled(false);
+        kotak1.setEnabled(false);
     }//GEN-LAST:event_kotak1ActionPerformed
 
     private void kotak2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_kotak2ActionPerformed
         kotak2.setText(startGame);
         if(startGame.equalsIgnoreCase("X")){
-            //jbtnTic2.setForeground(Color.BLACK);
-            //jbtnTic1.setBackground(Color.YELLOW);
+            kotak2.setForeground(Color.BLACK);
+            kotak2.setBackground(Color.YELLOW);
             check = false;
         }else{
-            //jbtnTic2.setForeground(Color.BLACK);
-            // jbtnTic2.setBackground(Color.RED);
+            kotak2.setForeground(Color.BLACK);
+            kotak2.setBackground(Color.RED);
             check = true;
         }
         pilihPlayer();
         menang();
-        //jbtnTic2.setEnabled(false);
+        kotak2.setEnabled(false);
     }//GEN-LAST:event_kotak2ActionPerformed
 
     private void kotak3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_kotak3ActionPerformed
         kotak3.setText(startGame);
         if(startGame.equalsIgnoreCase("X")){
-            //jbtnTic2.setForeground(Color.BLACK);
-            //jbtnTic1.setBackground(Color.YELLOW);
+            kotak3.setForeground(Color.BLACK);
+            kotak3.setBackground(Color.YELLOW);
             check = false;
         }else{
-            //jbtnTic2.setForeground(Color.BLACK);
-            // jbtnTic2.setBackground(Color.RED);
+            kotak3.setForeground(Color.BLACK);
+            kotak3.setBackground(Color.RED);
             check = true;
         }
         pilihPlayer();
         menang();
-        //jbtnTic2.setEnabled(false);
+        kotak3.setEnabled(false);
     }//GEN-LAST:event_kotak3ActionPerformed
 
     private void kotak6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_kotak6ActionPerformed
         kotak6.setText(startGame);
         if(startGame.equalsIgnoreCase("X")){
-            //jbtnTic2.setForeground(Color.BLACK);
-            //jbtnTic1.setBackground(Color.YELLOW);
+            kotak6.setForeground(Color.BLACK);
+            kotak6.setBackground(Color.YELLOW);
             check = false;
         }else{
-            //jbtnTic2.setForeground(Color.BLACK);
-            // jbtnTic2.setBackground(Color.RED);
+            kotak6.setForeground(Color.BLACK);
+            kotak6.setBackground(Color.RED);
             check = true;
         }
         pilihPlayer();
         menang();
-        //jbtnTic2.setEnabled(false);
+        kotak6.setEnabled(false);
     }//GEN-LAST:event_kotak6ActionPerformed
 
     private void kotak4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_kotak4ActionPerformed
         kotak4.setText(startGame);
         if(startGame.equalsIgnoreCase("X")){
-            //jbtnTic2.setForeground(Color.BLACK);
-            //jbtnTic1.setBackground(Color.YELLOW);
+            kotak4.setForeground(Color.BLACK);
+            kotak4.setBackground(Color.YELLOW);
             check = false;
         }else{
-            //jbtnTic2.setForeground(Color.BLACK);
-            //jbtnTic2.setBackground(Color.RED);
+            kotak4.setForeground(Color.BLACK);
+            kotak4.setBackground(Color.RED);
             check = true;
         }
         pilihPlayer();
         menang();
-        //jbtnTic2.setEnabled(false);
+        kotak4.setEnabled(false);
     }//GEN-LAST:event_kotak4ActionPerformed
 
     private void kotak5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_kotak5ActionPerformed
         kotak5.setText(startGame);
         if(startGame.equalsIgnoreCase("X")){
-            //jbtnTic2.setForeground(Color.BLACK);
-            //jbtnTic1.setBackground(Color.YELLOW);
+            kotak5.setForeground(Color.BLACK);
+            kotak5.setBackground(Color.YELLOW);
             check = false;
         }else{
-            //jbtnTic2.setForeground(Color.BLACK);
-            // jbtnTic2.setBackground(Color.RED);
+            kotak5.setForeground(Color.BLACK);
+            kotak5.setBackground(Color.RED);
             check = true;
         }
         pilihPlayer();
         menang();
-        //jbtnTic2.setEnabled(false);
+        kotak5.setEnabled(false);
     }//GEN-LAST:event_kotak5ActionPerformed
 
     private void kotak9ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_kotak9ActionPerformed
         kotak9.setText(startGame);
         if(startGame.equalsIgnoreCase("X")){
-            //jbtnTic2.setForeground(Color.BLACK);
-            // jbtnTic1.setBackground(Color.YELLOW);
+            kotak9.setForeground(Color.BLACK);
+            kotak9.setBackground(Color.YELLOW);
             check = false;
         }else{
-            //jbtnTic2.setForeground(Color.BLACK);
-            // jbtnTic2.setBackground(Color.RED);
+            kotak9.setForeground(Color.BLACK);
+            kotak9.setBackground(Color.RED);
             check = true;
         }
         pilihPlayer();
         menang();
-        //jbtnTic2.setEnabled(false);
+        kotak9.setEnabled(false);
     }//GEN-LAST:event_kotak9ActionPerformed
 
     private void kotak7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_kotak7ActionPerformed
         kotak7.setText(startGame);
         if(startGame.equalsIgnoreCase("X")){
-            //jbtnTic2.setForeground(Color.BLACK);
-            //jbtnTic1.setBackground(Color.YELLOW);
+            kotak7.setForeground(Color.BLACK);
+            kotak7.setBackground(Color.YELLOW);
             check = false;
         }else{
-            //jbtnTic2.setForeground(Color.BLACK);
-            // jbtnTic2.setBackground(Color.RED);
+            kotak7.setForeground(Color.BLACK);
+            kotak7.setBackground(Color.RED);
             check = true;
         }
         pilihPlayer();
         menang();
-        //jbtnTic2.setEnabled(false);
+        kotak7.setEnabled(false);
     }//GEN-LAST:event_kotak7ActionPerformed
 
     private void kotak8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_kotak8ActionPerformed
         kotak8.setText(startGame);
         if (startGame.equalsIgnoreCase("X")){
-            //jbtnTic2.setForeground(Color.BLACK);
-            // jbtnTic1.setBackground(Color.YELLOW);
+            kotak8.setForeground(Color.BLACK);
+            kotak8.setBackground(Color.YELLOW);
             check = false;
         }else{
-            //jbtnTic2.setForeground(Color.BLACK);
-            // jbtnTic2.setBackground(Color.RED);
+            kotak8.setForeground(Color.BLACK);
+            kotak8.setBackground(Color.RED);
             check = true;
         }
         pilihPlayer();
         menang();
-        //jbtnTic2.setEnabled(false);
+        kotak8.setEnabled(false);
     }//GEN-LAST:event_kotak8ActionPerformed
 
     private void exitButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_exitButtonActionPerformed
@@ -725,7 +731,9 @@ public class Game extends JFrame{
         kotak9.setText("");
         
         scorePlayerX.setText("0");
+        xCount = 0;
         scorePlayerO.setText("0");
+        oCount = 0;
         
         kotak1.setBackground(Color.LIGHT_GRAY);
         kotak2.setBackground(Color.LIGHT_GRAY);

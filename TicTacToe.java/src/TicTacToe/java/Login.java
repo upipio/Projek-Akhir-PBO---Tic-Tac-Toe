@@ -151,7 +151,6 @@ public class Login extends JFrame{
     private void jTextField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField1ActionPerformed
         // TODO add your handling code here:
         String text = jTextField1.getText(); // Ambil teks dari jTextField1
-    jLabel1.setText(text); // Set label1 dengan teks dari jTextField1
         
     }//GEN-LAST:event_jTextField1ActionPerformed
 
@@ -169,7 +168,6 @@ public class Login extends JFrame{
 
     private void jTextField2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField2ActionPerformed
         String text = jTextField2.getText(); // Ambil teks dari jTextField2
-        jLabel2.setText(text); // Set label2 dengan teks dari jTextField2
     }//GEN-LAST:event_jTextField2ActionPerformed
 
     private void game(String username, String username2){
