@@ -9,16 +9,17 @@ import java.awt.event.ActionListener;
 
 /**
  *
- * @author sultanhafidzh
+ * @author
  */
-public class Login extends JFrame {
+
+public class Login extends JFrame{
     private JTextField textField;
     private JButton loginButton;
 
     /**
      * Creates new form NewJFrame
      */
-    public Login() {
+    public Login(){
         initComponents();
     }
 
@@ -155,30 +156,28 @@ public class Login extends JFrame {
     }//GEN-LAST:event_jTextField1ActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-
         String username = jTextField1.getText();
         String username2 = jTextField2.getText();
-    if (!username.isEmpty() && !username2.isEmpty()) {
+    if(!username.isEmpty() && !username2.isEmpty()){
         setVisible(false);
         new Game(username, username2).setVisible(true);
-    } else {
+    }else{
         JOptionPane.showMessageDialog(this, "Please enter a username!", "Error", JOptionPane.ERROR_MESSAGE);
     }
 
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jTextField2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField2ActionPerformed
-        // TODO add your handling code here:
-         String text = jTextField2.getText(); // Ambil teks dari jTextField2
-    jLabel2.setText(text); // Set label2 dengan teks dari jTextField2
-        
+        String text = jTextField2.getText(); // Ambil teks dari jTextField2
+        jLabel2.setText(text); // Set label2 dengan teks dari jTextField2
     }//GEN-LAST:event_jTextField2ActionPerformed
 
-    private void game(String username, String username2) {
+    private void game(String username, String username2){
         Game game1 = new Game(username, username2);
         game1.setVisible(true);
         dispose();
     }
+    
     /**
      * @param args the command line arguments
      */
