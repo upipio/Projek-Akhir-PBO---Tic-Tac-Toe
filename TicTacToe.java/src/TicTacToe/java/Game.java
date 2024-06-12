@@ -3,11 +3,12 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
 package TicTacToe.java;
+import java.awt.Color;
 import javax.swing.*;
 
 /**
  *
- * @author
+ * @author sultanhafidzh
  */
 public class Game extends JFrame {
 
@@ -44,9 +45,9 @@ public class Game extends JFrame {
         jLabel5 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
         jPanel5 = new javax.swing.JPanel();
-        jButton10 = new javax.swing.JButton();
+        Exit = new javax.swing.JButton();
         jButton11 = new javax.swing.JButton();
-        jButton12 = new javax.swing.JButton();
+        Reset = new javax.swing.JButton();
         jPanel3 = new javax.swing.JPanel();
         jButton1 = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
@@ -59,6 +60,7 @@ public class Game extends JFrame {
         jButton7 = new javax.swing.JButton();
         jPanel6 = new javax.swing.JPanel();
         jLabel7 = new javax.swing.JLabel();
+        jButton13 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setResizable(false);
@@ -93,9 +95,13 @@ public class Game extends JFrame {
         jLabel4.setText("=");
 
         jLabel5.setFont(new java.awt.Font("Segoe UI", 1, 66)); // NOI18N
+        jLabel5.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel5.setText("0");
         jLabel5.setOpaque(true);
 
         jLabel6.setFont(new java.awt.Font("Segoe UI", 1, 66)); // NOI18N
+        jLabel6.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel6.setText("0");
         jLabel6.setOpaque(true);
 
         javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
@@ -142,19 +148,19 @@ public class Game extends JFrame {
         jPanel5.setBackground(new java.awt.Color(255, 204, 255));
         jPanel5.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.LOWERED));
 
-        jButton10.setFont(new java.awt.Font("Segoe UI", 1, 50)); // NOI18N
-        jButton10.setText("DATABASE");
-        jButton10.setMaximumSize(new java.awt.Dimension(200, 158));
-        jButton10.setMinimumSize(new java.awt.Dimension(200, 158));
-        jButton10.setPreferredSize(new java.awt.Dimension(200, 158));
-        jButton10.addActionListener(new java.awt.event.ActionListener() {
+        Exit.setFont(new java.awt.Font("Segoe UI", 1, 96)); // NOI18N
+        Exit.setText("Exit");
+        Exit.setMaximumSize(new java.awt.Dimension(200, 158));
+        Exit.setMinimumSize(new java.awt.Dimension(200, 158));
+        Exit.setPreferredSize(new java.awt.Dimension(200, 158));
+        Exit.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton10ActionPerformed(evt);
+                ExitActionPerformed(evt);
             }
         });
 
         jButton11.setFont(new java.awt.Font("Segoe UI", 1, 96)); // NOI18N
-        jButton11.setText("NEW GAME");
+        jButton11.setText("New Game");
         jButton11.setMaximumSize(new java.awt.Dimension(200, 158));
         jButton11.setMinimumSize(new java.awt.Dimension(200, 158));
         jButton11.setPreferredSize(new java.awt.Dimension(200, 158));
@@ -164,14 +170,14 @@ public class Game extends JFrame {
             }
         });
 
-        jButton12.setFont(new java.awt.Font("Segoe UI", 1, 96)); // NOI18N
-        jButton12.setText("RESET");
-        jButton12.setMaximumSize(new java.awt.Dimension(200, 158));
-        jButton12.setMinimumSize(new java.awt.Dimension(200, 158));
-        jButton12.setPreferredSize(new java.awt.Dimension(200, 158));
-        jButton12.addActionListener(new java.awt.event.ActionListener() {
+        Reset.setFont(new java.awt.Font("Segoe UI", 1, 96)); // NOI18N
+        Reset.setText("Reset");
+        Reset.setMaximumSize(new java.awt.Dimension(200, 158));
+        Reset.setMinimumSize(new java.awt.Dimension(200, 158));
+        Reset.setPreferredSize(new java.awt.Dimension(200, 158));
+        Reset.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton12ActionPerformed(evt);
+                ResetActionPerformed(evt);
             }
         });
 
@@ -184,9 +190,9 @@ public class Game extends JFrame {
                 .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jButton11, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel5Layout.createSequentialGroup()
-                        .addComponent(jButton12, javax.swing.GroupLayout.DEFAULT_SIZE, 307, Short.MAX_VALUE)
+                        .addComponent(Reset, javax.swing.GroupLayout.DEFAULT_SIZE, 307, Short.MAX_VALUE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jButton10, javax.swing.GroupLayout.PREFERRED_SIZE, 309, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(Exit, javax.swing.GroupLayout.PREFERRED_SIZE, 309, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap())
         );
         jPanel5Layout.setVerticalGroup(
@@ -196,14 +202,14 @@ public class Game extends JFrame {
                 .addComponent(jButton11, javax.swing.GroupLayout.PREFERRED_SIZE, 175, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jButton12, javax.swing.GroupLayout.DEFAULT_SIZE, 168, Short.MAX_VALUE)
-                    .addComponent(jButton10, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(Reset, javax.swing.GroupLayout.DEFAULT_SIZE, 168, Short.MAX_VALUE)
+                    .addComponent(Exit, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
         );
 
         jPanel2.add(jPanel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(8, 227, -1, -1));
 
-        jPanel1.add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(720, 120, 660, 640));
+        jPanel1.add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(720, 120, 660, 620));
 
         jPanel3.setBackground(new java.awt.Color(255, 204, 255));
         jPanel3.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.LOWERED));
@@ -284,7 +290,7 @@ public class Game extends JFrame {
                 jButton8ActionPerformed(evt);
             }
         });
-        jPanel3.add(jButton8, new org.netbeans.lib.awtextra.AbsoluteConstraints(34, 445, 184, 181));
+        jPanel3.add(jButton8, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 430, 184, 181));
 
         jButton9.setFont(new java.awt.Font("Segoe UI", 1, 96)); // NOI18N
         jButton9.setMaximumSize(new java.awt.Dimension(200, 158));
@@ -295,7 +301,7 @@ public class Game extends JFrame {
                 jButton9ActionPerformed(evt);
             }
         });
-        jPanel3.add(jButton9, new org.netbeans.lib.awtextra.AbsoluteConstraints(257, 445, 184, 181));
+        jPanel3.add(jButton9, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 430, 184, 181));
 
         jButton7.setFont(new java.awt.Font("Segoe UI", 1, 96)); // NOI18N
         jButton7.setMaximumSize(new java.awt.Dimension(200, 158));
@@ -306,9 +312,9 @@ public class Game extends JFrame {
                 jButton7ActionPerformed(evt);
             }
         });
-        jPanel3.add(jButton7, new org.netbeans.lib.awtextra.AbsoluteConstraints(470, 445, 184, 181));
+        jPanel3.add(jButton7, new org.netbeans.lib.awtextra.AbsoluteConstraints(470, 430, 184, 181));
 
-        jPanel1.add(jPanel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 120, 690, 640));
+        jPanel1.add(jPanel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 120, 690, 620));
 
         jPanel6.setBackground(new java.awt.Color(255, 204, 255));
         jPanel6.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.LOWERED));
@@ -320,6 +326,11 @@ public class Game extends JFrame {
         jPanel6.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(8, 8, 1350, -1));
 
         jPanel1.add(jPanel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, 1370, 100));
+
+        jButton13.setFont(new java.awt.Font("Segoe UI Historic", 1, 14)); // NOI18N
+        jButton13.setText("data pemain");
+        jButton13.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        jPanel1.add(jButton13, new org.netbeans.lib.awtextra.AbsoluteConstraints(520, 750, 370, -1));
 
         getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1400, 800));
 
@@ -362,19 +373,53 @@ public class Game extends JFrame {
     private void jButton9ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton9ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jButton9ActionPerformed
-
-    private void jButton10ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton10ActionPerformed
+private JFrame frame;
+    private void ExitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ExitActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jButton10ActionPerformed
+        frame = new JFrame("Exit");
+        if(JOptionPane.showConfirmDialog(frame, "Confirm if you want to exit","Tic Tac Toe",
+             JOptionPane.YES_NO_OPTION ) == JOptionPane.YES_NO_OPTION)
+        {
+            System.exit(0);
+        }
+    }//GEN-LAST:event_ExitActionPerformed
 
     private void jButton11ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton11ActionPerformed
         // TODO add your handling code here:
-        
     }//GEN-LAST:event_jButton11ActionPerformed
 
-    private void jButton12ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton12ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jButton12ActionPerformed
+    private void ResetActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ResetActionPerformed
+        jbtnTic1.setEnabled(true);
+        jbtnTic2.setEnabled(true);
+        jbtnTic3.setEnabled(true);
+        jbtnTic4.setEnabled(true);
+        jbtnTic5.setEnabled(true);
+        jbtnTic6.setEnabled(true);
+        jbtnTic7.setEnabled(true);
+        jbtnTic8.setEnabled(true);
+        jbtnTic9.setEnabled(true);
+        
+        jbtnTic1.setText("");
+        jbtnTic2.setText("");
+        jbtnTic3.setText("");
+        jbtnTic4.setText("");
+        jbtnTic5.setText("");
+        jbtnTic6.setText("");
+        jbtnTic7.setText("");
+        jbtnTic8.setText("");
+        jbtnTic9.setText("");
+        
+        jbtnTic1.setBackground(Color.LIGHT_GRAY);
+        jbtnTic2.setBackground(Color.LIGHT_GRAY);
+        jbtnTic3.setBackground(Color.LIGHT_GRAY);
+        jbtnTic4.setBackground(Color.LIGHT_GRAY);
+        jbtnTic5.setBackground(Color.LIGHT_GRAY);
+        jbtnTic6.setBackground(Color.LIGHT_GRAY);
+        jbtnTic7.setBackground(Color.LIGHT_GRAY);
+        jbtnTic8.setBackground(Color.LIGHT_GRAY);
+        jbtnTic9.setBackground(Color.LIGHT_GRAY);
+        
+    }//GEN-LAST:event_ResetActionPerformed
 
     /**
      * @param args the command line arguments
@@ -412,10 +457,11 @@ public class Game extends JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton Exit;
+    private javax.swing.JButton Reset;
     private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton10;
     private javax.swing.JButton jButton11;
-    private javax.swing.JButton jButton12;
+    private javax.swing.JButton jButton13;
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
     private javax.swing.JButton jButton4;
@@ -438,4 +484,136 @@ public class Game extends JFrame {
     private javax.swing.JPanel jPanel5;
     private javax.swing.JPanel jPanel6;
     // End of variables declaration//GEN-END:variables
+
+    private static class jFrame {
+
+        public jFrame() {
+        }
+    }
+
+    private static class jbtnTic3 {
+
+        private static void setEnabled(boolean b) {
+            throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        }
+
+        private static void setText(String string) {
+            throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        }
+
+        private static void setBackground(Color LIGHT_GRAY) {
+            throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        }
+
+        public jbtnTic3() {
+        }
+    }
+
+    private static class jbtnTic4 {
+
+        private static void setEnabled(boolean b) {
+            throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        }
+
+        private static void setText(String string) {
+            throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        }
+
+        private static void setBackground(Color LIGHT_GRAY) {
+            throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        }
+
+        public jbtnTic4() {
+        }
+    }
+
+    private static class jbtnTic5 {
+
+        private static void setEnabled(boolean b) {
+            throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        }
+
+        private static void setText(String string) {
+            throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        }
+
+        private static void setBackground(Color LIGHT_GRAY) {
+            throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        }
+
+        public jbtnTic5() {
+        }
+    }
+
+    private static class jbtnTic6 {
+
+        private static void setEnabled(boolean b) {
+            throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        }
+
+        private static void setText(String string) {
+            throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        }
+
+        private static void setBackground(Color LIGHT_GRAY) {
+            throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        }
+
+        public jbtnTic6() {
+        }
+    }
+
+    private static class jbtnTic7 {
+
+        private static void setEnabled(boolean b) {
+            throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        }
+
+        private static void setText(String string) {
+            throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        }
+
+        private static void setBackground(Color LIGHT_GRAY) {
+            throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        }
+
+        public jbtnTic7() {
+        }
+    }
+
+    private static class jbtnTic8 {
+
+        private static void setEnabled(boolean b) {
+            throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        }
+
+        private static void setText(String string) {
+            throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        }
+
+        private static void setBackground(Color LIGHT_GRAY) {
+            throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        }
+
+        public jbtnTic8() {
+        }
+    }
+
+    private static class jbtnTic9 {
+
+        private static void setEnabled(boolean b) {
+            throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        }
+
+        private static void setText(String string) {
+            throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        }
+
+        private static void setBackground(Color LIGHT_GRAY) {
+            throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        }
+
+        public jbtnTic9() {
+        }
+    }
 }
