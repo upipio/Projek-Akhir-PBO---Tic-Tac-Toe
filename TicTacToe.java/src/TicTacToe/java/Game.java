@@ -27,6 +27,40 @@ public class Game extends JFrame{
         initComponents();
     }
     
+    private void methodDC(){
+        kotak1.setEnabled(true);
+        kotak2.setEnabled(true);
+        kotak3.setEnabled(true);
+        kotak4.setEnabled(true);
+        kotak5.setEnabled(true);
+        kotak6.setEnabled(true);
+        kotak7.setEnabled(true);
+        kotak8.setEnabled(true);
+        kotak9.setEnabled(true);
+        
+        
+        kotak1.setText("");
+        kotak2.setText("");
+        kotak3.setText("");
+        kotak4.setText("");
+        kotak5.setText("");
+        kotak6.setText("");
+        kotak7.setText("");
+        kotak8.setText("");
+        kotak9.setText("");
+        
+        kotak1.setBackground(Color.LIGHT_GRAY);
+        kotak2.setBackground(Color.LIGHT_GRAY);
+        kotak3.setBackground(Color.LIGHT_GRAY);
+        kotak4.setBackground(Color.LIGHT_GRAY);
+        kotak5.setBackground(Color.LIGHT_GRAY);
+        kotak6.setBackground(Color.LIGHT_GRAY);
+        kotak7.setBackground(Color.LIGHT_GRAY);
+        kotak8.setBackground(Color.LIGHT_GRAY);
+        kotak9.setBackground(Color.LIGHT_GRAY);
+        
+}
+    
     /**
      * 
      * @param username untuk mengambil input username X
@@ -84,6 +118,7 @@ public class Game extends JFrame{
             kotak3.setBackground(Color.PINK);
             xCount -=-1;
             enableFalse();
+            methodDC();
         }
         
         if(b4==("X") && b5 == ("X") && b6 == ("X")){
@@ -94,6 +129,7 @@ public class Game extends JFrame{
             kotak5.setBackground(Color.PINK);
             kotak6.setBackground(Color.PINK);
             enableFalse();
+            methodDC();
         }
         
         if(b7==("X") && b8 == ("X") && b9 == ("X")){
@@ -104,6 +140,7 @@ public class Game extends JFrame{
             kotak8.setBackground(Color.PINK);
             kotak9.setBackground(Color.PINK);
             enableFalse();
+            methodDC();
         }
         
         if(b1==("X") && b4 == ("X") && b7 == ("X")){
@@ -114,6 +151,7 @@ public class Game extends JFrame{
             kotak4.setBackground(Color.PINK);
             kotak7.setBackground(Color.PINK);
             enableFalse();
+            methodDC();
         }
         
         if(b2==("X") && b5 == ("X") && b8 == ("X")){
@@ -124,6 +162,7 @@ public class Game extends JFrame{
             kotak5.setBackground(Color.PINK);
             kotak8.setBackground(Color.PINK);
             enableFalse();
+            methodDC();
         }
         
         if(b3==("X") && b6 == ("X") && b9 == ("X")){
@@ -134,6 +173,7 @@ public class Game extends JFrame{
             kotak6.setBackground(Color.PINK);
             kotak9.setBackground(Color.PINK);
             enableFalse();
+            methodDC();
          }
         
         if(b1==("X") && b5 == ("X") && b9 == ("X")){
@@ -144,6 +184,7 @@ public class Game extends JFrame{
             kotak5.setBackground(Color.PINK);
             kotak9.setBackground(Color.PINK);
             enableFalse();
+            methodDC();
         }
         
         if(b3==("X") && b5 == ("X") && b7 == ("X")){
@@ -154,6 +195,7 @@ public class Game extends JFrame{
             kotak5.setBackground(Color.PINK);
             kotak7.setBackground(Color.PINK);
             enableFalse();
+            methodDC();
         }
         
         if(b1==("O") && b2 == ("O") && b3 == ("O")){
@@ -164,6 +206,7 @@ public class Game extends JFrame{
             kotak2.setBackground(Color.PINK);
             kotak3.setBackground(Color.PINK);
             enableFalse();
+            methodDC();
         }
         
         if(b4==("O") && b5 == ("O") && b6 == ("O")){
@@ -174,6 +217,7 @@ public class Game extends JFrame{
             kotak5.setBackground(Color.PINK);
             kotak6.setBackground(Color.PINK);
             enableFalse();
+            methodDC();
        }
         
         if(b7==("O") && b8 == ("O") && b9 == ("O")){
@@ -184,6 +228,7 @@ public class Game extends JFrame{
             kotak8.setBackground(Color.PINK);
             kotak9.setBackground(Color.PINK);
             enableFalse();
+            methodDC();
         }
         
         if(b1==("O") && b4 == ("O") && b7 == ("O")){
@@ -194,6 +239,7 @@ public class Game extends JFrame{
             kotak4.setBackground(Color.PINK);
             kotak7.setBackground(Color.PINK);
             enableFalse();
+            methodDC();
         }
         
         if(b2==("O") && b5 == ("O") && b8 == ("O")){
@@ -204,6 +250,7 @@ public class Game extends JFrame{
             kotak5.setBackground(Color.PINK);
             kotak8.setBackground(Color.PINK);
             enableFalse();
+            methodDC();
         }
         
         if(b3==("O") && b6 == ("O") && b9 == ("O")){
@@ -214,6 +261,7 @@ public class Game extends JFrame{
             kotak6.setBackground(Color.PINK);
             kotak9.setBackground(Color.PINK);
             enableFalse();
+            methodDC();
         }
         
         if(b1==("O") && b5 == ("O") && b9 == ("O")){
@@ -224,6 +272,7 @@ public class Game extends JFrame{
             kotak5.setBackground(Color.PINK);
             kotak9.setBackground(Color.PINK);
             enableFalse();
+            methodDC();
         }
         
         if(b3==("O") && b5 == ("O") && b7 == ("O")){
@@ -234,6 +283,7 @@ public class Game extends JFrame{
             kotak5.setBackground(Color.PINK);
             kotak7.setBackground(Color.PINK);
             enableFalse();
+            methodDC();
         }
     }
     
@@ -571,7 +621,7 @@ public class Game extends JFrame{
         }
         pilihPlayer();
         menang();
-        kotak1.setEnabled(false);
+        //kotak1.setEnabled(false);
     }//GEN-LAST:event_kotak1ActionPerformed
 
     private void kotak2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_kotak2ActionPerformed
@@ -587,7 +637,7 @@ public class Game extends JFrame{
         }
         pilihPlayer();
         menang();
-        kotak2.setEnabled(false);
+        //kotak2.setEnabled(false);
     }//GEN-LAST:event_kotak2ActionPerformed
 
     private void kotak3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_kotak3ActionPerformed
@@ -603,7 +653,7 @@ public class Game extends JFrame{
         }
         pilihPlayer();
         menang();
-        kotak3.setEnabled(false);
+        //kotak3.setEnabled(false);
     }//GEN-LAST:event_kotak3ActionPerformed
 
     private void kotak6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_kotak6ActionPerformed
@@ -619,7 +669,7 @@ public class Game extends JFrame{
         }
         pilihPlayer();
         menang();
-        kotak6.setEnabled(false);
+        //kotak6.setEnabled(false);
     }//GEN-LAST:event_kotak6ActionPerformed
 
     private void kotak4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_kotak4ActionPerformed
@@ -635,7 +685,7 @@ public class Game extends JFrame{
         }
         pilihPlayer();
         menang();
-        kotak4.setEnabled(false);
+        //kotak4.setEnabled(false);
     }//GEN-LAST:event_kotak4ActionPerformed
 
     private void kotak5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_kotak5ActionPerformed
@@ -651,7 +701,7 @@ public class Game extends JFrame{
         }
         pilihPlayer();
         menang();
-        kotak5.setEnabled(false);
+        //kotak5.setEnabled(false);
     }//GEN-LAST:event_kotak5ActionPerformed
 
     private void kotak9ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_kotak9ActionPerformed
@@ -667,7 +717,7 @@ public class Game extends JFrame{
         }
         pilihPlayer();
         menang();
-        kotak9.setEnabled(false);
+        //kotak9.setEnabled(false);
     }//GEN-LAST:event_kotak9ActionPerformed
 
     private void kotak7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_kotak7ActionPerformed
@@ -683,7 +733,7 @@ public class Game extends JFrame{
         }
         pilihPlayer();
         menang();
-        kotak7.setEnabled(false);
+        //kotak7.setEnabled(false);
     }//GEN-LAST:event_kotak7ActionPerformed
 
     private void kotak8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_kotak8ActionPerformed
@@ -699,7 +749,7 @@ public class Game extends JFrame{
         }
         pilihPlayer();
         menang();
-        kotak8.setEnabled(false);
+        //kotak8.setEnabled(false);
     }//GEN-LAST:event_kotak8ActionPerformed
 
     private void exitButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_exitButtonActionPerformed
