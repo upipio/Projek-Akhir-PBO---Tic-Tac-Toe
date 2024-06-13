@@ -8,283 +8,150 @@ import java.awt.Color;
 import javax.swing.*;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
-
+import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
 /**
  *
- * @author
+ * @author Luthfi
  */
+interface Score{ // interface menghitung perkiraan yang berhubungan dengan score
+    default void pilihPlayer(String currentPlayer){
+        if(currentPlayer.equalsIgnoreCase("O")){
+            currentPlayer = "X";
+        }else{
+            currentPlayer = "O";
+        }
+    }
+    void playerScore();
+    static void methodDC(JButton kotak1, JButton kotak2, JButton kotak3, JButton kotak4, JButton kotak5, JButton kotak6, JButton kotak7, JButton kotak8, JButton kotak9){
+    kotak1.setEnabled(true);
+    kotak2.setEnabled(true);
+    kotak3.setEnabled(true);
+    kotak4.setEnabled(true);
+    kotak5.setEnabled(true);
+    kotak6.setEnabled(true);
+    kotak7.setEnabled(true);
+    kotak8.setEnabled(true);
+    kotak9.setEnabled(true);
+    
+    kotak1.setText("");
+    kotak2.setText("");
+    kotak3.setText("");
+    kotak4.setText("");
+    kotak5.setText("");
+    kotak6.setText("");
+    kotak7.setText("");
+    kotak8.setText("");
+    kotak9.setText("");
+    
+    kotak1.setBackground(Color.LIGHT_GRAY); // set default
+    kotak2.setBackground(Color.LIGHT_GRAY);
+    kotak3.setBackground(Color.LIGHT_GRAY);
+    kotak4.setBackground(Color.LIGHT_GRAY);
+    kotak5.setBackground(Color.LIGHT_GRAY);
+    kotak6.setBackground(Color.LIGHT_GRAY);
+    kotak7.setBackground(Color.LIGHT_GRAY);
+    kotak8.setBackground(Color.LIGHT_GRAY);
+    kotak9.setBackground(Color.LIGHT_GRAY);
+    }
 
-public class Game extends JFrame{
+}
+public class Game extends JFrame implements Score{ // super class
     private String startGame ="X";
     private int xCount = 0;
     private int oCount = 0;
-    boolean check;
+    private boolean check;
     private JFrame frame;
+    public Bugger bug;
+    
     /**
      * Membuat public game
      */
-    public Game(){
-        initComponents();
+    public Game(){ // konstruktor
+        initComponents(); // Inisialisasi dri GUI
+        bug = new Bugger(kotak1, kotak2, kotak3, kotak4, kotak5, kotak6, kotak7, kotak8, kotak9);
+        kotak1 = bug.getKotak1();
+        kotak2 = bug.getKotak2();
+        kotak3 = bug.getKotak3();
+        kotak4 = bug.getKotak4();
+        kotak5 = bug.getKotak5();
+        kotak6 = bug.getKotak6();
+        kotak7 = bug.getKotak7();
+        kotak8 = bug.getKotak8();
+        kotak9 = bug.getKotak9();
+    }
+    public Connection getConnection(){ // koneksi
+        Connection con;
+        try{
+            con = DriverManager.getConnection("jdbc:mysql://localhost/tictactoe", "root", "");
+            return con;
+        }catch (SQLException e){
+            e.printStackTrace();
+            return null;
+        }
     }
     
-    private void methodDC(){
-        kotak1.setEnabled(true);
-        kotak2.setEnabled(true);
-        kotak3.setEnabled(true);
-        kotak4.setEnabled(true);
-        kotak5.setEnabled(true);
-        kotak6.setEnabled(true);
-        kotak7.setEnabled(true);
-        kotak8.setEnabled(true);
-        kotak9.setEnabled(true);
-        
-        
-        kotak1.setText("");
-        kotak2.setText("");
-        kotak3.setText("");
-        kotak4.setText("");
-        kotak5.setText("");
-        kotak6.setText("");
-        kotak7.setText("");
-        kotak8.setText("");
-        kotak9.setText("");
-        
-        kotak1.setBackground(Color.LIGHT_GRAY);
-        kotak2.setBackground(Color.LIGHT_GRAY);
-        kotak3.setBackground(Color.LIGHT_GRAY);
-        kotak4.setBackground(Color.LIGHT_GRAY);
-        kotak5.setBackground(Color.LIGHT_GRAY);
-        kotak6.setBackground(Color.LIGHT_GRAY);
-        kotak7.setBackground(Color.LIGHT_GRAY);
-        kotak8.setBackground(Color.LIGHT_GRAY);
-        kotak9.setBackground(Color.LIGHT_GRAY);
-        
-}
+    public void saveScore(int playerXScore, int playerOScore){ // save skor
+        Connection con = getConnection();
+        PreparedStatement ps;
+        try{
+            String query = "INSERT INTO game_scores(player_x, player_o) VALUES(?, ?)";
+            ps = con.prepareStatement(query);
+            ps.setInt(1, playerXScore);
+            ps.setInt(2, playerOScore);
+            ps.executeUpdate();
+        }catch (SQLException e){
+            e.printStackTrace();
+        }
+    }
     
+    public void showScorePopup(){ // ref https://layar.yarsi.ac.id/pluginfile.php/448179/mod_resource/content/2/MySQLMain.java
+        Connection con = getConnection();
+        Statement st;
+        ResultSet rs;
+        StringBuilder sb = new StringBuilder();
+        try{
+            st = con.createStatement();
+            String query = "SELECT * FROM game_scores";
+            rs = st.executeQuery(query);
+            while (rs.next()){
+                sb.append("Player X: ").append(rs.getInt("player_x"))
+                  .append(", Player O: ").append(rs.getInt("player_o")).append("\n");
+            }
+            JOptionPane.showMessageDialog(this, sb.toString(), "Game Scores", JOptionPane.INFORMATION_MESSAGE);
+        }catch (SQLException e){
+            e.printStackTrace();
+        }
+    }
     /**
      * 
      * @param username untuk mengambil input username X
      * @param username2 untuk mengambil input username O
      */
-    public Game(String username, String username2){
+    public Game(String username, String username2){ // overloading
         initComponents();
         playerX.setText(username); // Set playerX dengan username
         playerO.setText(username2); // Set playerO dengan username2
     }
     
-    private void pilihPlayer(){
+    public void pilihPlayer(){ // start player xoxo
         if(startGame.equalsIgnoreCase("X")){
             startGame ="O";
         }else{
             startGame ="X";
         }
     }
-    
-    private void playerScore(){
+    @Override
+    public void playerScore(){ // set score design
         scorePlayerX.setText(String.valueOf(xCount));
         scorePlayerO.setText(String.valueOf(oCount));
-    }
-    
-    private void enableFalse(){
-        kotak1.setEnabled(false);
-        kotak2.setEnabled(false);
-        kotak3.setEnabled(false);
-        kotak4.setEnabled(false);
-        kotak5.setEnabled(false);
-        kotak6.setEnabled(false);
-        kotak7.setEnabled(false);
-        kotak8.setEnabled(false);
-        kotak9.setEnabled(false);
-    }
-    
-    private void menang(){
-        String b1 = kotak1.getText();
-        String b2 = kotak2.getText();
-        String b3 = kotak3.getText();
-        
-        String b4 = kotak4.getText();
-        String b5 = kotak5.getText();
-        String b6 = kotak6.getText();
-        
-        String b7 = kotak7.getText();
-        String b8 = kotak8.getText();
-        String b9 = kotak9.getText();
-        
-        if(b1==("X") & b2 == ("X") & b3 == ("X")){
-            JOptionPane.showMessageDialog(this,"Player X Wins", "Tic Tac Toe",JOptionPane.INFORMATION_MESSAGE);
-            playerScore();
-            kotak1.setBackground(Color.PINK);
-            kotak2.setBackground(Color.PINK);
-            kotak3.setBackground(Color.PINK);
-            xCount -=-1;
-            enableFalse();
-            methodDC();
-        }
-        
-        if(b4==("X") && b5 == ("X") && b6 == ("X")){
-            JOptionPane.showMessageDialog(this,"Player X Wins", "Tic Tac Toe",JOptionPane.INFORMATION_MESSAGE);
-            xCount -=-1;
-            playerScore();
-            kotak4.setBackground(Color.PINK);
-            kotak5.setBackground(Color.PINK);
-            kotak6.setBackground(Color.PINK);
-            enableFalse();
-            methodDC();
-        }
-        
-        if(b7==("X") && b8 == ("X") && b9 == ("X")){
-            JOptionPane.showMessageDialog(this,"Player X Wins", "Tic Tac Toe",JOptionPane.INFORMATION_MESSAGE);
-            xCount -=-1;
-            playerScore();
-            kotak7.setBackground(Color.PINK);
-            kotak8.setBackground(Color.PINK);
-            kotak9.setBackground(Color.PINK);
-            enableFalse();
-            methodDC();
-        }
-        
-        if(b1==("X") && b4 == ("X") && b7 == ("X")){
-            JOptionPane.showMessageDialog(this,"Player X Wins", "Tic Tac Toe",JOptionPane.INFORMATION_MESSAGE);
-            xCount -=-1;
-            playerScore();
-            kotak1.setBackground(Color.PINK);
-            kotak4.setBackground(Color.PINK);
-            kotak7.setBackground(Color.PINK);
-            enableFalse();
-            methodDC();
-        }
-        
-        if(b2==("X") && b5 == ("X") && b8 == ("X")){
-            JOptionPane.showMessageDialog(this,"Player X Wins", "Tic Tac Toe",JOptionPane.INFORMATION_MESSAGE);
-            xCount -=-1;
-            playerScore();
-            kotak2.setBackground(Color.PINK);
-            kotak5.setBackground(Color.PINK);
-            kotak8.setBackground(Color.PINK);
-            enableFalse();
-            methodDC();
-        }
-        
-        if(b3==("X") && b6 == ("X") && b9 == ("X")){
-            JOptionPane.showMessageDialog(this,"Player X Wins", "Tic Tac Toe",JOptionPane.INFORMATION_MESSAGE);
-            xCount -=-1;
-            playerScore();
-            kotak3.setBackground(Color.PINK);
-            kotak6.setBackground(Color.PINK);
-            kotak9.setBackground(Color.PINK);
-            enableFalse();
-            methodDC();
-         }
-        
-        if(b1==("X") && b5 == ("X") && b9 == ("X")){
-            JOptionPane.showMessageDialog(this,"Player X Wins", "Tic Tac Toe",JOptionPane.INFORMATION_MESSAGE);
-            xCount -=-1;
-            playerScore();
-            kotak1.setBackground(Color.PINK);
-            kotak5.setBackground(Color.PINK);
-            kotak9.setBackground(Color.PINK);
-            enableFalse();
-            methodDC();
-        }
-        
-        if(b3==("X") && b5 == ("X") && b7 == ("X")){
-            JOptionPane.showMessageDialog(this,"Player X Wins", "Tic Tac Toe",JOptionPane.INFORMATION_MESSAGE);
-            xCount -=-1;
-            playerScore();
-            kotak3.setBackground(Color.PINK);
-            kotak5.setBackground(Color.PINK);
-            kotak7.setBackground(Color.PINK);
-            enableFalse();
-            methodDC();
-        }
-        
-        if(b1==("O") && b2 == ("O") && b3 == ("O")){
-            JOptionPane.showMessageDialog(this,"Player O Wins", "Tic Tac Toe",JOptionPane.INFORMATION_MESSAGE);
-            oCount -=-1;
-            playerScore();
-            kotak1.setBackground(Color.PINK);
-            kotak2.setBackground(Color.PINK);
-            kotak3.setBackground(Color.PINK);
-            enableFalse();
-            methodDC();
-        }
-        
-        if(b4==("O") && b5 == ("O") && b6 == ("O")){
-            JOptionPane.showMessageDialog(this,"Player O Wins", "Tic Tac Toe",JOptionPane.INFORMATION_MESSAGE);
-            oCount -=-1;
-            playerScore();
-            kotak4.setBackground(Color.PINK);
-            kotak5.setBackground(Color.PINK);
-            kotak6.setBackground(Color.PINK);
-            enableFalse();
-            methodDC();
-       }
-        
-        if(b7==("O") && b8 == ("O") && b9 == ("O")){
-            JOptionPane.showMessageDialog(this,"Player O Wins", "Tic Tac Toe",JOptionPane.INFORMATION_MESSAGE);
-            oCount -=-1;
-            playerScore();
-            kotak7.setBackground(Color.PINK);
-            kotak8.setBackground(Color.PINK);
-            kotak9.setBackground(Color.PINK);
-            enableFalse();
-            methodDC();
-        }
-        
-        if(b1==("O") && b4 == ("O") && b7 == ("O")){
-            JOptionPane.showMessageDialog(this,"Player O Wins", "Tic Tac Toe",JOptionPane.INFORMATION_MESSAGE);
-            oCount -=-1;
-            playerScore();
-            kotak1.setBackground(Color.PINK);
-            kotak4.setBackground(Color.PINK);
-            kotak7.setBackground(Color.PINK);
-            enableFalse();
-            methodDC();
-        }
-        
-        if(b2==("O") && b5 == ("O") && b8 == ("O")){
-            JOptionPane.showMessageDialog(this,"Player O Wins", "Tic Tac Toe",JOptionPane.INFORMATION_MESSAGE);
-            oCount -=-1;
-            playerScore();
-            kotak2.setBackground(Color.PINK);
-            kotak5.setBackground(Color.PINK);
-            kotak8.setBackground(Color.PINK);
-            enableFalse();
-            methodDC();
-        }
-        
-        if(b3==("O") && b6 == ("O") && b9 == ("O")){
-            JOptionPane.showMessageDialog(this,"Player O Wins", "Tic Tac Toe",JOptionPane.INFORMATION_MESSAGE);
-            oCount -=-1;
-            playerScore();
-            kotak3.setBackground(Color.PINK);
-            kotak6.setBackground(Color.PINK);
-            kotak9.setBackground(Color.PINK);
-            enableFalse();
-            methodDC();
-        }
-        
-        if(b1==("O") && b5 == ("O") && b9 == ("O")){
-            JOptionPane.showMessageDialog(this,"Player O Wins", "Tic Tac Toe",JOptionPane.INFORMATION_MESSAGE);
-            oCount -=-1;
-            playerScore();
-            kotak1.setBackground(Color.PINK);
-            kotak5.setBackground(Color.PINK);
-            kotak9.setBackground(Color.PINK);
-            enableFalse();
-            methodDC();
-        }
-        
-        if(b3==("O") && b5 == ("O") && b7 == ("O")){
-            JOptionPane.showMessageDialog(this,"Player O Wins", "Tic Tac Toe",JOptionPane.INFORMATION_MESSAGE);
-            oCount -=-1;
-            playerScore();
-            kotak3.setBackground(Color.PINK);
-            kotak5.setBackground(Color.PINK);
-            kotak7.setBackground(Color.PINK);
-            enableFalse();
-            methodDC();
-        }
     }
     
 
@@ -297,6 +164,7 @@ public class Game extends JFrame{
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jDialog1 = new javax.swing.JDialog();
         jPanel1 = new javax.swing.JPanel();
         jPanel2 = new javax.swing.JPanel();
         jPanel4 = new javax.swing.JPanel();
@@ -323,6 +191,17 @@ public class Game extends JFrame{
         jPanel6 = new javax.swing.JPanel();
         jLabel7 = new javax.swing.JLabel();
         historyDatabase = new javax.swing.JButton();
+
+        javax.swing.GroupLayout jDialog1Layout = new javax.swing.GroupLayout(jDialog1.getContentPane());
+        jDialog1.getContentPane().setLayout(jDialog1Layout);
+        jDialog1Layout.setHorizontalGroup(
+            jDialog1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 400, Short.MAX_VALUE)
+        );
+        jDialog1Layout.setVerticalGroup(
+            jDialog1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 300, Short.MAX_VALUE)
+        );
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setResizable(false);
@@ -593,7 +472,7 @@ public class Game extends JFrame{
         jPanel1.add(jPanel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, 1370, 100));
 
         historyDatabase.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        historyDatabase.setText("History");
+        historyDatabase.setText("Show History");
         historyDatabase.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
         historyDatabase.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -609,147 +488,129 @@ public class Game extends JFrame{
     }// </editor-fold>//GEN-END:initComponents
 
     private void kotak1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_kotak1ActionPerformed
-        kotak1.setText(startGame);
-        if(startGame.equalsIgnoreCase("X")){
-            kotak1.setForeground(Color.BLACK);
-            kotak1.setBackground(Color.YELLOW);
-            check = false;
-        }else{
-            kotak1.setForeground(Color.BLACK);
-            kotak1.setBackground(Color.RED);
-             check = true;
+         if (kotak1.getText().isEmpty()) {
+            kotak1.setText(startGame);
+            if (startGame.equalsIgnoreCase("X")) {
+                kotak1.setForeground(Color.RED);
+            } else {
+                kotak1.setForeground(Color.BLUE);
+            }
+            pilihPlayer();
+            //menang();
+            endGame();
         }
-        pilihPlayer();
-        menang();
-        //kotak1.setEnabled(false);
     }//GEN-LAST:event_kotak1ActionPerformed
 
     private void kotak2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_kotak2ActionPerformed
-        kotak2.setText(startGame);
-        if(startGame.equalsIgnoreCase("X")){
-            kotak2.setForeground(Color.BLACK);
-            kotak2.setBackground(Color.YELLOW);
-            check = false;
-        }else{
-            kotak2.setForeground(Color.BLACK);
-            kotak2.setBackground(Color.RED);
-            check = true;
+        if (kotak2.getText().isEmpty()) {
+            kotak2.setText(startGame);
+            if (startGame.equalsIgnoreCase("X")) {
+                kotak2.setForeground(Color.RED);
+            } else {
+                kotak2.setForeground(Color.BLUE);
+            }
+            pilihPlayer();
+            //menang();
+            endGame();
         }
-        pilihPlayer();
-        menang();
-        //kotak2.setEnabled(false);
     }//GEN-LAST:event_kotak2ActionPerformed
 
     private void kotak3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_kotak3ActionPerformed
-        kotak3.setText(startGame);
-        if(startGame.equalsIgnoreCase("X")){
-            kotak3.setForeground(Color.BLACK);
-            kotak3.setBackground(Color.YELLOW);
-            check = false;
-        }else{
-            kotak3.setForeground(Color.BLACK);
-            kotak3.setBackground(Color.RED);
-            check = true;
+        if (kotak3.getText().isEmpty()) {
+            kotak3.setText(startGame);
+            if (startGame.equalsIgnoreCase("X")) {
+                kotak3.setForeground(Color.RED);
+            } else {
+                kotak3.setForeground(Color.BLUE);
+            }
+            pilihPlayer();
+            //menang();
+            endGame();
         }
-        pilihPlayer();
-        menang();
-        //kotak3.setEnabled(false);
     }//GEN-LAST:event_kotak3ActionPerformed
 
     private void kotak6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_kotak6ActionPerformed
-        kotak6.setText(startGame);
-        if(startGame.equalsIgnoreCase("X")){
-            kotak6.setForeground(Color.BLACK);
-            kotak6.setBackground(Color.YELLOW);
-            check = false;
-        }else{
-            kotak6.setForeground(Color.BLACK);
-            kotak6.setBackground(Color.RED);
-            check = true;
+        if (kotak6.getText().isEmpty()) {
+            kotak6.setText(startGame);
+            if (startGame.equalsIgnoreCase("X")) {
+                kotak6.setForeground(Color.RED);
+            } else {
+                kotak6.setForeground(Color.BLUE);
+            }
+            pilihPlayer();
+            //menang();
+            endGame();
         }
-        pilihPlayer();
-        menang();
-        //kotak6.setEnabled(false);
     }//GEN-LAST:event_kotak6ActionPerformed
 
     private void kotak4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_kotak4ActionPerformed
-        kotak4.setText(startGame);
-        if(startGame.equalsIgnoreCase("X")){
-            kotak4.setForeground(Color.BLACK);
-            kotak4.setBackground(Color.YELLOW);
-            check = false;
-        }else{
-            kotak4.setForeground(Color.BLACK);
-            kotak4.setBackground(Color.RED);
-            check = true;
+        if (kotak4.getText().isEmpty()) {
+            kotak4.setText(startGame);
+            if (startGame.equalsIgnoreCase("X")) {
+                kotak4.setForeground(Color.RED);
+            } else {
+                kotak4.setForeground(Color.BLUE);
+            }
+            pilihPlayer();
+            //menang();
+            endGame();
         }
-        pilihPlayer();
-        menang();
-        //kotak4.setEnabled(false);
     }//GEN-LAST:event_kotak4ActionPerformed
 
     private void kotak5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_kotak5ActionPerformed
-        kotak5.setText(startGame);
-        if(startGame.equalsIgnoreCase("X")){
-            kotak5.setForeground(Color.BLACK);
-            kotak5.setBackground(Color.YELLOW);
-            check = false;
-        }else{
-            kotak5.setForeground(Color.BLACK);
-            kotak5.setBackground(Color.RED);
-            check = true;
+        if (kotak5.getText().isEmpty()) {
+            kotak5.setText(startGame);
+            if (startGame.equalsIgnoreCase("X")) {
+                kotak5.setForeground(Color.RED);
+            } else {
+                kotak5.setForeground(Color.BLUE);
+            }
+            pilihPlayer();
+            //menang();
+            endGame();
         }
-        pilihPlayer();
-        menang();
-        //kotak5.setEnabled(false);
     }//GEN-LAST:event_kotak5ActionPerformed
 
     private void kotak9ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_kotak9ActionPerformed
-        kotak9.setText(startGame);
-        if(startGame.equalsIgnoreCase("X")){
-            kotak9.setForeground(Color.BLACK);
-            kotak9.setBackground(Color.YELLOW);
-            check = false;
-        }else{
-            kotak9.setForeground(Color.BLACK);
-            kotak9.setBackground(Color.RED);
-            check = true;
+        if (kotak9.getText().isEmpty()) {
+            kotak9.setText(startGame);
+            if (startGame.equalsIgnoreCase("X")) {
+                kotak9.setForeground(Color.RED);
+            } else {
+                kotak9.setForeground(Color.BLUE);
+            }
+            pilihPlayer();
+            //menang();
+            endGame();
         }
-        pilihPlayer();
-        menang();
-        //kotak9.setEnabled(false);
     }//GEN-LAST:event_kotak9ActionPerformed
 
     private void kotak7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_kotak7ActionPerformed
-        kotak7.setText(startGame);
-        if(startGame.equalsIgnoreCase("X")){
-            kotak7.setForeground(Color.BLACK);
-            kotak7.setBackground(Color.YELLOW);
-            check = false;
-        }else{
-            kotak7.setForeground(Color.BLACK);
-            kotak7.setBackground(Color.RED);
-            check = true;
+        if (kotak7.getText().isEmpty()) {
+            kotak7.setText(startGame);
+            if (startGame.equalsIgnoreCase("X")) {
+                kotak7.setForeground(Color.RED);
+            } else {
+                kotak7.setForeground(Color.BLUE);
+            }
+            pilihPlayer();
+            //menang();
+            endGame();
         }
-        pilihPlayer();
-        menang();
-        //kotak7.setEnabled(false);
     }//GEN-LAST:event_kotak7ActionPerformed
 
     private void kotak8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_kotak8ActionPerformed
-        kotak8.setText(startGame);
-        if (startGame.equalsIgnoreCase("X")){
-            kotak8.setForeground(Color.BLACK);
-            kotak8.setBackground(Color.YELLOW);
-            check = false;
-        }else{
-            kotak8.setForeground(Color.BLACK);
-            kotak8.setBackground(Color.RED);
-            check = true;
+        if (kotak8.getText().isEmpty()) {
+            kotak8.setText(startGame);
+            if (startGame.equalsIgnoreCase("X")) {
+                kotak8.setForeground(Color.RED);
+            } else {
+                kotak8.setForeground(Color.BLUE);
+            }
+            pilihPlayer();
+            //menang();
+            endGame();
         }
-        pilihPlayer();
-        menang();
-        //kotak8.setEnabled(false);
     }//GEN-LAST:event_kotak8ActionPerformed
 
     private void exitButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_exitButtonActionPerformed
@@ -769,7 +630,7 @@ public class Game extends JFrame{
         kotak7.setEnabled(true);
         kotak8.setEnabled(true);
         kotak9.setEnabled(true);
-        
+        // reset game reset score
         kotak1.setText("");
         kotak2.setText("");
         kotak3.setText("");
@@ -807,7 +668,7 @@ public class Game extends JFrame{
         kotak7.setEnabled(true);
         kotak8.setEnabled(true);
         kotak9.setEnabled(true);
-        
+        // reset game saja
         kotak1.setText("");
         kotak2.setText("");
         kotak3.setText("");
@@ -827,12 +688,79 @@ public class Game extends JFrame{
         kotak7.setBackground(Color.LIGHT_GRAY);
         kotak8.setBackground(Color.LIGHT_GRAY);
         kotak9.setBackground(Color.LIGHT_GRAY);
+        
+        if(xCount <= 0 && oCount <= 0){
+                resetBoard(true);
+            }
+            
+        
     }//GEN-LAST:event_resetButtonActionPerformed
 
     private void historyDatabaseActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_historyDatabaseActionPerformed
-        // TODO add your handling code here:
+        showScorePopup();// pop up panel score
     }//GEN-LAST:event_historyDatabaseActionPerformed
 
+    private void endGame(){ // mengakhiri semuanya
+        String[] lines = {
+            kotak1.getText() + kotak2.getText() + kotak3.getText(),
+            kotak4.getText() + kotak5.getText() + kotak6.getText(),
+            kotak7.getText() + kotak8.getText() + kotak9.getText(),
+            kotak1.getText() + kotak4.getText() + kotak7.getText(),
+            kotak2.getText() + kotak5.getText() + kotak8.getText(),
+            kotak3.getText() + kotak6.getText() + kotak9.getText(),
+            kotak1.getText() + kotak5.getText() + kotak9.getText(),
+            kotak3.getText() + kotak5.getText() + kotak7.getText() // pengecekan tiap kotak berisi xoxo
+        };
+
+        for(String line : lines){
+            if(line.equals("XXX")){ // method line setiap kotak terdapat horizontal/vertical/diagonal XXX
+                JOptionPane.showMessageDialog(this, "Player X Wins!", "Tic Tac Toe", JOptionPane.INFORMATION_MESSAGE);
+                xCount++;
+                playerScore();
+                saveScore(xCount, oCount);
+                resetBoard();
+                bug.enableFalse();
+                return;
+            }else if (line.equals("OOO")){ // sama dengan diatas tapi OOO
+                JOptionPane.showMessageDialog(this, "Player O Wins!", "Tic Tac Toe", JOptionPane.INFORMATION_MESSAGE);
+                oCount++;
+                playerScore();
+                saveScore(xCount, oCount);
+                resetBoard();
+                bug.enableFalse();
+                return;
+            }
+        }
+
+        if (isBoardFull()){ // bugging jika seri
+            JOptionPane.showMessageDialog(this, "Draw!", "Tic Tac Toe", JOptionPane.INFORMATION_MESSAGE);
+            saveScore(xCount, oCount);
+            resetBoard();
+            bug.enableFalse();
+        }
+    }
+
+    private boolean isBoardFull(){ // cek jika kotaknya penuh dengan xoxo
+        return !kotak1.getText().isEmpty() && !kotak2.getText().isEmpty() && !kotak3.getText().isEmpty()
+            && !kotak4.getText().isEmpty() && !kotak5.getText().isEmpty() && !kotak6.getText().isEmpty()
+            && !kotak7.getText().isEmpty() && !kotak8.getText().isEmpty() && !kotak9.getText().isEmpty();
+    }
+
+    private void resetBoard(){ // reset otomatis jika gamenya kelar berbeda dengan tombol reset manual
+        Score.methodDC(kotak1, kotak2, kotak3, kotak4, kotak5, kotak6, kotak7, kotak8, kotak9);
+        startGame = "X";
+    }
+    
+    private void resetBoard(boolean resetScores) { // overloading
+    resetBoard();  // reset kotak
+
+    if (resetScores) {
+        // Reset skor
+        xCount = 0;
+        oCount = 0;
+        playerScore();  // menampilkan score
+    }
+}
     /**
      * @param args the command line arguments
      */
@@ -871,6 +799,7 @@ public class Game extends JFrame{
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton exitButton;
     private javax.swing.JButton historyDatabase;
+    private javax.swing.JDialog jDialog1;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel7;
@@ -880,15 +809,15 @@ public class Game extends JFrame{
     private javax.swing.JPanel jPanel4;
     private javax.swing.JPanel jPanel5;
     private javax.swing.JPanel jPanel6;
-    private javax.swing.JButton kotak1;
-    private javax.swing.JButton kotak2;
-    private javax.swing.JButton kotak3;
-    private javax.swing.JButton kotak4;
-    private javax.swing.JButton kotak5;
-    private javax.swing.JButton kotak6;
-    private javax.swing.JButton kotak7;
-    private javax.swing.JButton kotak8;
-    private javax.swing.JButton kotak9;
+    public javax.swing.JButton kotak1;
+    public javax.swing.JButton kotak2;
+    public javax.swing.JButton kotak3;
+    public javax.swing.JButton kotak4;
+    public javax.swing.JButton kotak5;
+    public javax.swing.JButton kotak6;
+    public javax.swing.JButton kotak7;
+    public javax.swing.JButton kotak8;
+    public javax.swing.JButton kotak9;
     private javax.swing.JButton newGameButton;
     private javax.swing.JLabel playerO;
     private javax.swing.JLabel playerX;
@@ -896,4 +825,66 @@ public class Game extends JFrame{
     private javax.swing.JLabel scorePlayerO;
     private javax.swing.JLabel scorePlayerX;
     // End of variables declaration//GEN-END:variables
+}
+class Bugger extends Game{ // subclass
+    JButton kotak1, kotak2, kotak3, kotak4, kotak5, kotak6, kotak7, kotak8, kotak9;
+    public Bugger(JButton kotak1, JButton kotak2, JButton kotak3, JButton kotak4, JButton kotak5, JButton kotak6, JButton kotak7, JButton kotak8, JButton kotak9){// dari parent class
+        super();
+        this.kotak1 = kotak1;
+        this.kotak2 = kotak2;
+        this.kotak3 = kotak3;
+        this.kotak4 = kotak4;
+        this.kotak5 = kotak5;
+        this.kotak6 = kotak6;
+        this.kotak7 = kotak7;
+        this.kotak8 = kotak8;
+        this.kotak9 = kotak9;
+    }
+    public void setKotak1(JButton kotak1){ // setter
+        this.kotak1 = kotak1;}
+    public void setKotak2(JButton kotak2){
+        this.kotak2 = kotak2;}
+    public void setKotak3(JButton kotak3){
+        this.kotak3 = kotak3;}
+    public void setKotak4(JButton kotak4){
+        this.kotak4 = kotak4;}
+    public void setKotak5(JButton kotak5){
+        this.kotak5 = kotak5;}
+    public void setKotak6(JButton kotak1){
+        this.kotak6 = kotak6;}
+    public void setKotak7(JButton kotak1){
+        this.kotak7 = kotak7;}
+    public void setKotak8(JButton kotak1){
+        this.kotak8 = kotak8;}
+    public void setKotak9(JButton kotak1){
+        this.kotak9 = kotak9;}
+    public JButton getKotak1(){ // getter
+        return kotak1;}
+    public JButton getKotak2(){
+        return kotak2;}
+    public JButton getKotak3(){
+        return kotak3;}
+    public JButton getKotak4(){
+        return kotak4;}
+    public JButton getKotak5(){
+        return kotak5;}
+    public JButton getKotak6(){
+        return kotak6;}
+    public JButton getKotak7(){
+        return kotak7;}
+    public JButton getKotak8(){
+        return kotak8;}
+    public JButton getKotak9(){
+        return kotak9;}
+    public void enableFalse(){ // disable klik 2x
+        kotak1.setEnabled(false);
+        kotak2.setEnabled(false);
+        kotak3.setEnabled(false);
+        kotak4.setEnabled(false);
+        kotak5.setEnabled(false);
+        kotak6.setEnabled(false);
+        kotak7.setEnabled(false);
+        kotak8.setEnabled(false);
+        kotak9.setEnabled(false);
+    }
 }

@@ -3,23 +3,31 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
 package TicTacToe.java;
+
 import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.*;
+import java.sql.*;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 
 /**
  *
- * @author
+ * @author Sultan
  */
-
 public class Login extends JFrame{
-    private JTextField textField;
+    private JTextField textField; // enkapsulasi
     private JButton loginButton;
-
+    private JTextField usernameField;
+    private JPasswordField passwordField;
     /**
      * Creates new form NewJFrame
      */
-    public Login(){
+    public Login(){ // konstruktor
         initComponents();
     }
 
@@ -46,9 +54,9 @@ public class Login extends JFrame{
         setResizable(false);
         getContentPane().setLayout(null);
 
-        jPanel1.setBackground(new java.awt.Color(255, 0, 204));
+        jPanel1.setBackground(new java.awt.Color(255, 51, 51));
 
-        jLabel1.setFont(new java.awt.Font("Tempus Sans ITC", 1, 24)); // NOI18N
+        jLabel1.setFont(new java.awt.Font("Segoe UI Black", 1, 24)); // NOI18N
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel1.setText("TIC TAC TOE ");
         jLabel1.setPreferredSize(new java.awt.Dimension(60, 20));
@@ -71,11 +79,11 @@ public class Login extends JFrame{
             }
         });
 
-        jLabel4.setFont(new java.awt.Font("Tempus Sans ITC", 1, 14)); // NOI18N
+        jLabel4.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         jLabel4.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel4.setText("VS");
 
-        jLabel5.setFont(new java.awt.Font("Tempus Sans ITC", 1, 14)); // NOI18N
+        jLabel5.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         jLabel5.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel5.setText("BATTLE !");
 
@@ -138,7 +146,7 @@ public class Login extends JFrame{
                 .addComponent(jLabel5)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jButton1)
-                .addContainerGap(298, Short.MAX_VALUE))
+                .addContainerGap(297, Short.MAX_VALUE))
         );
 
         getContentPane().add(jPanel1);
@@ -203,6 +211,7 @@ public class Login extends JFrame{
         }
         //</editor-fold>
         //</editor-fold>
+        new Login();
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
