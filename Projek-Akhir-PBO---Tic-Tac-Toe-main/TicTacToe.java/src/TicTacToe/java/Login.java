@@ -195,11 +195,12 @@ public class Login extends JFrame{
     }//GEN-LAST:event_jTextField2ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        // TODO add your handling code here:
-        this.toBack();
-        Tutorial tutor = new Tutorial();
-        tutor.setVisible(true);
+        // membuat fungsi dari tombol "?" agar lasung di arahkan ke Tutorial
         
+        Tutorial tutor = new Tutorial(); 
+        tutor.setVisible(true);
+        //this.show();
+        dispose();
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void game(String username, String username2){

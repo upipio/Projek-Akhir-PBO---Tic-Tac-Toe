@@ -45,7 +45,7 @@ public class Tutorial extends javax.swing.JFrame {
         jTextArea1.setColumns(20);
         jTextArea1.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jTextArea1.setRows(5);
-        jTextArea1.setText("Selamat datang di permainan Tic-Tac-Toe Trio Informatics Mortal! Berikut adalah langkah-langkah untuk memainkan game ini:\n     Sebelum memulai permainan, anda harus login terlebih dahulu untuk memasukan data diri anda dan lawan lawan anda, \n     kemudian kalian bisa memilih ingin bermain sebagai ‘X’ atau ‘O’.\n1. Mulai Permainan\n   •  Jalankan aplikasi game Tic-Tac-Toe.\n   •  Anda akan melihat sebuah papan permainan 3x3 dengan kotak-kotak kosong.\n2. Memahami Papan Permainan\n   • Papan permainan terdiri dari 9 kotak yang diatur dalam grid 3x3.\n   • Pemain bergantian menandai kotak dengan simbol mereka, 'X' atau 'O'.\n3. Giliran Pemain\n   • Pemain pertama akan menandai kotak dengan simbol 'X'.\n   • Pemain kedua akan menandai kotak dengan simbol 'O'.\n   • Klik pada kotak yang ingin Anda tandai. Simbol Anda akan muncul di kotak tersebut.\n4. Aturan Permainan\n   • Pemain bergantian menandai kotak yang kosong.\n   • Tujuan permainan adalah menjadi pemain pertama yang mendapatkan tiga simbol yang sama secara horizontal, vertikal, atau diagonal.\n5. Menang atau Seri\n   • Jika seorang pemain berhasil menyusun tiga simbol yang sama dalam satu garis lurus (horizontal, vertikal, atau diagonal), pemain tersebut menang.\n   • Jika semua kotak terisi dan tidak ada pemain yang mendapatkan tiga simbol yang sama dalam satu garis, permainan berakhir dengan seri.\n6. Mengakhiri dan Memulai Permainan Baru\n   • Setelah seorang pemain menang atau permainan berakhir dengan seri, Anda dapat memulai permainan baru dengan me-restart aplikasi.\nContoh Permainan\n   1. Mulai: Papan permainan kosong.\n   2. Giliran Pertama: Pemain 1 (X) mengklik kotak tengah. Kotak tersebut sekarang berisi 'X'.\n   3. Giliran Kedua: Pemain 2 (O) mengklik kotak pojok kiri atas. Kotak tersebut sekarang berisi 'O'.\n   4. Lanjutkan Bergantian: Pemain 1 (X) dan Pemain 2 (O) terus bergantian mengklik kotak-kotak yang kosong.\n   5. Menang: Pemain 1 (X) berhasil mendapatkan tiga simbol 'X' dalam satu garis. Pemain 1 menang!\n   6. Seri: Jika semua kotak terisi tanpa ada pemenang, permainan berakhir dengan hasil seri.\nSelamat bermain dan semoga beruntung!\n\n");
+        jTextArea1.setText("Selamat datang di permainan Tic-Tac-Toe Trio Informatics Mortal! Berikut adalah langkah-langkah untuk memainkan game ini:\n\n     Sebelum memulai permainan, anda harus login terlebih dahulu untuk memasukan data diri anda dan lawan lawan anda, \n     kemudian kalian bisa memilih ingin bermain sebagai ‘X’ atau ‘O’.\n\n1. Mulai Permainan\n   •  Jalankan aplikasi game Tic-Tac-Toe.\n   •  Anda akan melihat sebuah papan permainan 3x3 dengan kotak-kotak kosong.\n2. Memahami Papan Permainan\n   • Papan permainan terdiri dari 9 kotak yang diatur dalam grid 3x3.\n   • Pemain bergantian menandai kotak dengan simbol mereka, 'X' atau 'O'.\n3. Giliran Pemain\n   • Pemain pertama akan menandai kotak dengan simbol 'X'.\n   • Pemain kedua akan menandai kotak dengan simbol 'O'.\n   • Klik pada kotak yang ingin Anda tandai. Simbol Anda akan muncul di kotak tersebut.\n4. Aturan Permainan\n   • Pemain bergantian menandai kotak yang kosong.\n   • Tujuan permainan adalah menjadi pemain pertama yang mendapatkan tiga simbol yang sama secara horizontal, vertikal, atau diagonal.\n5. Menang atau Seri\n   • Jika seorang pemain berhasil menyusun tiga simbol yang sama dalam satu garis lurus (horizontal, vertikal, atau diagonal), pemain tersebut menang.\n   • Jika semua kotak terisi dan tidak ada pemain yang mendapatkan tiga simbol yang sama dalam satu garis, permainan berakhir dengan seri.\n6. Mengakhiri dan Memulai Permainan Baru\n   • Setelah seorang pemain menang atau permainan berakhir dengan seri, Anda dapat memulai permainan baru dengan me-restart aplikasi.\n\nContoh Permainan\n   1. Mulai: Papan permainan kosong.\n   2. Giliran Pertama: Pemain 1 (X) mengklik kotak tengah. Kotak tersebut sekarang berisi 'X'.\n   3. Giliran Kedua: Pemain 2 (O) mengklik kotak pojok kiri atas. Kotak tersebut sekarang berisi 'O'.\n   4. Lanjutkan Bergantian: Pemain 1 (X) dan Pemain 2 (O) terus bergantian mengklik kotak-kotak yang kosong.\n   5. Menang: Pemain 1 (X) berhasil mendapatkan tiga simbol 'X' dalam satu garis. Pemain 1 menang!\n   6. Seri: Jika semua kotak terisi tanpa ada pemenang, permainan berakhir dengan hasil seri.\n\nSelamat bermain dan semoga beruntung!");
         jScrollPane1.setViewportView(jTextArea1);
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
@@ -72,7 +72,7 @@ public class Tutorial extends javax.swing.JFrame {
         jTextField1.setFont(new java.awt.Font("STXinwei", 1, 50)); // NOI18N
         jTextField1.setHorizontalAlignment(javax.swing.JTextField.CENTER);
         jTextField1.setText("TUTORIAL");
-        jTextField1.setBorder(javax.swing.BorderFactory.createEtchedBorder());
+        jTextField1.setBorder(null);
 
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
@@ -146,11 +146,12 @@ public class Tutorial extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        // TODO add your handling code here:
-        this.toBack();
+        // membuat fungsi tombol "Kembali" agar bisa kembali ke login
+        
         Login login = new Login();
         login.setVisible(true);
-        
+        //this.show();
+        dispose();
     }//GEN-LAST:event_jButton1ActionPerformed
 
     /**
