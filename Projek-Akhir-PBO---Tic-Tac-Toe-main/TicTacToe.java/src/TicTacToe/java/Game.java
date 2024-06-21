@@ -99,13 +99,19 @@ public class Game extends JFrame implements Score{ // super class
     }
     
     public void saveScore(int playerXScore, int playerOScore){ // save skor
+        String namaX = playerX.getText();
+        String namaO = playerO.getText();
+        
+        
         Connection con = getConnection();
         PreparedStatement ps;
         try{
-            String query = "INSERT INTO game_scores(player_x, player_o) VALUES(?, ?)";
+            String query = "INSERT INTO game_scores(Nama_X, Nama_O, player_x, player_o) VALUES(?, ?, ?, ?)"; //create
             ps = con.prepareStatement(query);
-            ps.setInt(1, playerXScore);
-            ps.setInt(2, playerOScore);
+            ps.setString(1, namaX);
+            ps.setString(2, namaO);
+            ps.setInt(3, playerXScore);
+            ps.setInt(4, playerOScore);
             ps.executeUpdate();
         }catch (SQLException e){
             e.printStackTrace();
@@ -119,7 +125,7 @@ public class Game extends JFrame implements Score{ // super class
         StringBuilder sb = new StringBuilder();
         try{
             st = con.createStatement();
-            String query = "SELECT * FROM game_scores";
+            String query = "SELECT * FROM game_scores"; //read
             rs = st.executeQuery(query);
             while (rs.next()){
                 sb.append("Player X: ").append(rs.getInt("player_x"))
@@ -178,6 +184,8 @@ public class Game extends JFrame implements Score{ // super class
         exitButton = new javax.swing.JButton();
         newGameButton = new javax.swing.JButton();
         resetButton = new javax.swing.JButton();
+        delete = new javax.swing.JButton();
+        update = new javax.swing.JButton();
         jPanel3 = new javax.swing.JPanel();
         kotak1 = new javax.swing.JButton();
         kotak2 = new javax.swing.JButton();
@@ -325,6 +333,24 @@ public class Game extends JFrame implements Score{ // super class
             }
         });
 
+        delete.setFont(new java.awt.Font("Segoe UI", 1, 48)); // NOI18N
+        delete.setText("DELETE");
+        delete.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        delete.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                deleteActionPerformed(evt);
+            }
+        });
+
+        update.setFont(new java.awt.Font("Segoe UI", 1, 48)); // NOI18N
+        update.setText("UPDATE");
+        update.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        update.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                updateActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel5Layout = new javax.swing.GroupLayout(jPanel5);
         jPanel5.setLayout(jPanel5Layout);
         jPanel5Layout.setHorizontalGroup(
@@ -334,20 +360,28 @@ public class Game extends JFrame implements Score{ // super class
                 .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(newGameButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel5Layout.createSequentialGroup()
-                        .addComponent(resetButton, javax.swing.GroupLayout.DEFAULT_SIZE, 307, Short.MAX_VALUE)
+                        .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(delete, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(resetButton, javax.swing.GroupLayout.DEFAULT_SIZE, 307, Short.MAX_VALUE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(exitButton, javax.swing.GroupLayout.PREFERRED_SIZE, 309, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(exitButton, javax.swing.GroupLayout.DEFAULT_SIZE, 309, Short.MAX_VALUE)
+                            .addComponent(update, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
                 .addContainerGap())
         );
         jPanel5Layout.setVerticalGroup(
             jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel5Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(newGameButton, javax.swing.GroupLayout.PREFERRED_SIZE, 175, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
+                .addGap(22, 22, 22)
+                .addComponent(newGameButton, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(resetButton, javax.swing.GroupLayout.DEFAULT_SIZE, 168, Short.MAX_VALUE)
-                    .addComponent(exitButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(exitButton, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(resetButton, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(delete, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(update, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
         );
 
@@ -700,6 +734,16 @@ public class Game extends JFrame implements Score{ // super class
         showScorePopup();// pop up panel score
     }//GEN-LAST:event_historyDatabaseActionPerformed
 
+    private void deleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_deleteActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_deleteActionPerformed
+
+    private void updateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_updateActionPerformed
+        // TODO add your handling code here:
+        setVisible(false);
+        new Update().setVisible(true);
+    }//GEN-LAST:event_updateActionPerformed
+
     private void endGame(){ // mengakhiri semuanya
         String[] lines = {
             kotak1.getText() + kotak2.getText() + kotak3.getText(),
@@ -797,6 +841,7 @@ public class Game extends JFrame implements Score{ // super class
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton delete;
     private javax.swing.JButton exitButton;
     private javax.swing.JButton historyDatabase;
     private javax.swing.JDialog jDialog1;
@@ -824,6 +869,7 @@ public class Game extends JFrame implements Score{ // super class
     private javax.swing.JButton resetButton;
     private javax.swing.JLabel scorePlayerO;
     private javax.swing.JLabel scorePlayerX;
+    private javax.swing.JButton update;
     // End of variables declaration//GEN-END:variables
 }
 class Bugger extends Game{ // subclass
