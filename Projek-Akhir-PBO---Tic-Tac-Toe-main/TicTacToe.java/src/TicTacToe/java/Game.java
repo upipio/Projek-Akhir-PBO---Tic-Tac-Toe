@@ -63,6 +63,12 @@ interface Score{ // interface menghitung perkiraan yang berhubungan dengan score
     }
 
 }
+
+/**
+ * Kelas Game mewakili permainan Tic Tac Toe.
+ * Kelas ini menangani inisialisasi papan permainan, 
+ * aksi pemain, dan tampilan status permainan.
+ */
 public class Game extends JFrame implements Score{ // super class
     private String startGame ="X";
     private int xCount = 0;
@@ -73,7 +79,8 @@ public class Game extends JFrame implements Score{ // super class
     public Game bug1;
     
     /**
-     * Membuat public game
+     * Menginisialisasi instance baru dari Game.
+     * Menyiapkan papan permainan dan menginisialisasi tombol-tombol.
      */
     public Game(){ // konstruktor
         initComponents(); // Inisialisasi dri GUI
