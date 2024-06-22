@@ -70,6 +70,7 @@ public class Game extends JFrame implements Score{ // super class
     private boolean check;
     private JFrame frame;
     public Bugger bug;
+    public Game bug1;
     
     /**
      * Membuat public game
@@ -87,6 +88,14 @@ public class Game extends JFrame implements Score{ // super class
         kotak8 = bug.getKotak8();
         kotak9 = bug.getKotak9();
     }
+    
+    public void checkBuggerInstance() {
+        if (bug instanceof Bugger) {
+            Bugger buggerObj = (Bugger) bug; // Downcasting
+           // buggerObj.enableFalse();
+        }
+    }
+    
     public Connection getConnection(){ // koneksi
         Connection con;
         try{
@@ -128,8 +137,8 @@ public class Game extends JFrame implements Score{ // super class
             String query = "SELECT * FROM game_scores"; //read
             rs = st.executeQuery(query);
             while (rs.next()){
-                sb.append("Player X: ").append(rs.getInt("player_x"))
-                  .append(", Player O: ").append(rs.getInt("player_o")).append("\n");
+                sb.append(rs.getString("Nama_X")+ " = ").append(rs.getInt("player_x"))
+                  .append(", " + rs.getString("Nama_O") + " = ").append(rs.getInt("player_o")).append("\n");
             }
             JOptionPane.showMessageDialog(this, sb.toString(), "Game Scores", JOptionPane.INFORMATION_MESSAGE);
         }catch (SQLException e){
@@ -159,6 +168,13 @@ public class Game extends JFrame implements Score{ // super class
         scorePlayerX.setText(String.valueOf(xCount));
         scorePlayerO.setText(String.valueOf(oCount));
     }
+    
+    public void showGameStatus(String status) {
+        JOptionPane.showMessageDialog(this, status, "Game Status", JOptionPane.INFORMATION_MESSAGE);
+        
+    }
+    
+    
     
 
     /**
@@ -735,7 +751,8 @@ public class Game extends JFrame implements Score{ // super class
     }//GEN-LAST:event_historyDatabaseActionPerformed
 
     private void deleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_deleteActionPerformed
-        // TODO add your handling code here:
+        setVisible(false);
+        new Delete().setVisible(true);
     }//GEN-LAST:event_deleteActionPerformed
 
     private void updateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_updateActionPerformed
@@ -758,6 +775,8 @@ public class Game extends JFrame implements Score{ // super class
 
         for(String line : lines){
             if(line.equals("XXX")){ // method line setiap kotak terdapat horizontal/vertical/diagonal XXX
+                //Game gameObj = (Game) bug; // Upcasting
+                //gameObj.showGameStatus("Player X Wins!"); // Memanggil metode yang di-override
                 JOptionPane.showMessageDialog(this, "Player X Wins!", "Tic Tac Toe", JOptionPane.INFORMATION_MESSAGE);
                 xCount++;
                 playerScore();
@@ -766,6 +785,8 @@ public class Game extends JFrame implements Score{ // super class
                 bug.enableFalse();
                 return;
             }else if (line.equals("OOO")){ // sama dengan diatas tapi OOO
+                //Game gameObj = (Game) bug; // Upcasting
+                //gameObj.showGameStatus("Player O Wins!"); // Memanggil method yang telah di ubah
                 JOptionPane.showMessageDialog(this, "Player O Wins!", "Tic Tac Toe", JOptionPane.INFORMATION_MESSAGE);
                 oCount++;
                 playerScore();
@@ -777,6 +798,9 @@ public class Game extends JFrame implements Score{ // super class
         }
 
         if (isBoardFull()){ // bugging jika seri
+            //Game gameObj = (Game) bug; // Upcasting
+            //gameObj.showGameStatus("It's a Draw!"); // Memanggil metode yang di-override
+   
             JOptionPane.showMessageDialog(this, "Draw!", "Tic Tac Toe", JOptionPane.INFORMATION_MESSAGE);
             saveScore(xCount, oCount);
             resetBoard();
@@ -932,5 +956,10 @@ class Bugger extends Game{ // subclass
         kotak7.setEnabled(false);
         kotak8.setEnabled(false);
         kotak9.setEnabled(false);
+    }
+    
+    @Override
+    public void showGameStatus(String status) {
+        JOptionPane.showMessageDialog(this, "Bugger: " + status, "Bugger Game Status", JOptionPane.WARNING_MESSAGE);
     }
 }

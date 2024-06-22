@@ -181,7 +181,10 @@ public class Login extends JFrame{
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         String username = jTextField1.getText();
         String username2 = jTextField2.getText();
-    if(!username.isEmpty() && !username2.isEmpty()){
+        
+    if(username.matches("\\d+") && username2.matches("\\d+")){
+        JOptionPane.showMessageDialog(this, "Username tidak boleh mengandung angka!", "Error", JOptionPane.ERROR_MESSAGE);
+    }else if(!username.isEmpty() && !username2.isEmpty()){
         setVisible(false);
         new Game(username, username2).setVisible(true);
     }else{
